@@ -1,7 +1,6 @@
 
 
 
-
 const express = require('express')
 const router = express.Router()
 const request = require('request')
@@ -41,13 +40,13 @@ router.post('/city', function (req, res) {
             timezone: weatherData.timezone,
             cityId: weatherData.id
         }
-
+        
         newCity = new Weather({
             
             cityName: newCity.cityName,
             country: newCity.country,
-            temperature: newCity.timezone,
-            cityId: newCity.id
+            timezone: newCity.timezone,
+            cityId: newCity.cityId
             
         })
         newCity.save()
@@ -60,17 +59,20 @@ router.post('/city', function (req, res) {
 
 router.delete('/city', function (req, res) {
     const cityNameDel = req.query.q
-    console.log(cityName)
+    console.log(cityNameDel)
 
-    Weather.remove({cityName: cityNameDel}, function(err){
+    Weather.deleteOne({ cityName: cityNameDel}, function(err){
         console.log(err)
     })
+    res.end()
 })
 
 
-router.get('/cities', function (req, res) {
-    const cities = req.query.q
-    res.send(Weather.find({ cityName: cities }))
+
+router.get('/cities', async function (req, res) {
+    const citiesData = req.query.q
+    let newData = await Weather.find({ cityName: citiesData })
+    res.send(newData)
 
 })
 

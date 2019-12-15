@@ -1,15 +1,16 @@
 
-import { type } from "os"
+// const jquery = require('jquery')
+// const apiCaller = require('../server/routes/api')
 
 
 class TempManager {
-    constructor(cityData, ){
-        this.cityData = [],
 
+    constructor(cityData) {
 
+        this.cityData = []
     }
 
-    getDataFromDB(res){
+    getDataFromDB(){
         $.get('/cities', function(req, res){
             let newCityData = req.query
             if(newCityDate)
@@ -32,16 +33,18 @@ class TempManager {
         })
     }
 
-    removeCity(cityName){
-        $.ajax({
-            url: '/city'
-            type: 'DELETE'
-            success: function(cityName){
+    // removeCity(cityName){
+    //     $.ajax({
+    //         url: '/city'
+    //         type: 'DELETE'
+    //         success: function(cityName){
                 
-            }
-        })
+    //         }
+    //     })
 
-    }
+    // }
 
 
 }
+
+module.exports = TempManager

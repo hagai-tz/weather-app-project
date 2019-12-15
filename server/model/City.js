@@ -7,7 +7,10 @@ const weatherSchema = new Schema({
     cityName: String,
     temperature: Number,
     condition: String,
-    conditionPic: String
+    conditionPic: String,
+    country: String,
+    timezone: Number,
+    cityId: Number
 
 })
 
